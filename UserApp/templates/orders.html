@@ -1,0 +1,78 @@
+{%extends "master.html"%}
+<html>
+{%block "content"%}
+<div class="navbar-default sidebar" role="navigation">
+   
+</div>
+<!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Orders Information</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            List of all Orders
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th>Date_of_order</th>
+                                        <th>User's Name</th>
+                                        <th>Amount</th>
+                                        <th>Details</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for order in orders %}
+                                    <tr>
+                                        <td>{{order.id}}</td>
+                                        <td>{{order.customer.customer.first_name}} {{order.customer.customer.last_name}}</td>
+                                        <td>{% if order.if_cancelled == False %}
+                                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                            {% else %}
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{order.date_of_order}}</td>
+                                       <td>{{request.session.uname}}</td>
+                                        <td>{{order.amount}}</td>
+                                        <td>{{order.details}}</td>
+                                        
+                                        
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            
+            <!-- /.row -->
+        </div>
+       
+
+    </div>
+    
+
+   </body>
+{%endblock%}
+
+</html>
